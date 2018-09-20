@@ -81,13 +81,16 @@ object golosinaBaniada {
 }
 
 object tuttifrutti {
-	var esLibreGluten = true
-	var gusto 
+	var property esLibreGluten = true
+	var property gusto = "frutilla"
 	method peso() = 5
 	method libreGluten() = esLibreGluten
 	method precio() = if ( esLibreGluten ) 7 else 10
 	method gusto() = gusto 
-	method mordisco() = {}
+	method mordisco() { if ( gusto == "frutilla" ) gusto = "chocolate"
+		           else if ( gusto == "chocolate" ) gusto = "naranja"
+		           else gusto = "frutilla" 
+	}
 	                    
 	
 }

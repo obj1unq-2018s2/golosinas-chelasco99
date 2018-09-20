@@ -1,0 +1,75 @@
+import golosinas.*
+
+describe "test de golosinaBaniada" {
+	
+	test "peso inicial" {
+		golosinaBaniada.baniaA(tuttifrutti)
+		assert.equals(9, golosinaBaniada.peso())
+		
+		golosinaBaniada.baniaA(chocolatin)
+		chocolatin.pesoInicial(20)
+		assert.equals(24, golosinaBaniada.peso())
+		
+		golosinaBaniada.baniaA(chupetin)
+		assert.equals(11, golosinaBaniada.peso())		
+	}
+	
+	test "precio" {
+		golosinaBaniada.baniaA(tuttifrutti)
+		tuttifrutti.esLibreGluten(true)
+		assert.equals(9, golosinaBaniada.precio())
+		
+		golosinaBaniada.baniaA(chocolatin)
+		chocolatin.pesoInicial(20)
+		assert.equals(12, golosinaBaniada.precio())
+		
+		golosinaBaniada.baniaA(chupetin)
+		assert.equals(4, golosinaBaniada.precio())
+	}
+	
+	test "mordiscos" {
+		golosinaBaniada.baniaA(tuttifrutti)
+		golosinaBaniada.mordisco()
+		assert.equals("chocolate", golosinaBaniada.gusto())
+		assert.equals(7, golosinaBaniada.peso())
+		golosinaBaniada.mordisco()
+		assert.equals("naranja", golosinaBaniada.gusto())
+		assert.equals(5, golosinaBaniada.peso())
+		
+		golosinaBaniada.baniaA(chocolatin)
+		chocolatin.pesoInicial(20)
+		golosinaBaniada.mordisco()
+		assert.equals(18, golosinaBaniada.peso())
+		golosinaBaniada.mordisco()
+		assert.equals(16, golosinaBaniada.peso())
+		
+		golosinaBaniada.baniaA(chupetin)
+		golosinaBaniada.mordisco()
+		assert.equals(0.7, golosinaBaniada.peso())
+		golosinaBaniada.mordisco()
+		assert.equals(0.7, golosinaBaniada.peso())
+	}
+	
+	test "gusto" {
+		golosinaBaniada.baniaA(tuttifrutti)
+		assert.equals("frutilla", tuttifrutti.gusto())
+		
+		golosinaBaniada.baniaA(chocolatin)
+		assert.equals("chocolate", chocolatin.gusto())
+		
+		golosinaBaniada.baniaA(chupetin)
+		assert.equals("frutilla", chupetin.gusto())
+	}
+	
+	test "libre de gluten" {
+		golosinaBaniada.baniaA(tuttifrutti)
+		assert.that(tuttifrutti.libreGluten())
+		
+		golosinaBaniada.baniaA(chocolatin)
+		assert.that(not chocolatin.libreGluten())
+		
+		golosinaBaniada.baniaA(chupetin)
+		assert.that(chupetin.libreGluten())
+	}
+	
+}

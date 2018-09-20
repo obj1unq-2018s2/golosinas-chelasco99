@@ -19,5 +19,21 @@ object mariano {
 	
 	method sabores() { return golosinas.map { golosina => golosina.gusto() }.asSet() }
 	
+	method golosinaMasCara() { return golosinas.max { golosina => golosina.precio() } }
+	
+	method pesoGolosinas() { return golosinas.sum { golosina => golosina.peso() } }
+	
+	method golosinasFaltantes(golosinasDeseadas) {
+		 var deseadas = golosinasDeseadas 
+		deseadas.removeAll(golosinas)
+		return deseadas
+	} 
+	
+	method gustosFaltantes(gustosDeseados) {
+		var deseados = gustosDeseados
+		deseados.removeAll(golosinas.gusto())
+		return deseados
+		
+	}
 }
 
