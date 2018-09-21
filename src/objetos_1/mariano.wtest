@@ -3,13 +3,6 @@ import mariano.*
 
 describe "tests de mariano" {
 
-	fixture {
-		chocolatin.pesoInicial(100)
-		mariano.comprar(chocolatin)
-		mariano.comprar(caramelo)
-		mariano.comprar(bombon)
-	}
-
 	test "test comprar" {
 		assert.equals(3, mariano.golosinas().size())
 		assert.that(mariano.golosinas().contains(chocolatin))
@@ -19,17 +12,67 @@ describe "tests de mariano" {
 	}
 	
 	test "probar golosinas" {
-		/* habilitar las lineas anuladas cuando se complete la definicion 
-		 * de las golosinas
-		 */
-//		assert.equals(100, chocolatin.peso())
-//		assert.equals(5, caramelo.peso())
+		chocolatin.pesoInicial(100)
+		caramelo.peso()
+		bombon.peso()
+		assert.equals(100, chocolatin.peso())
+		assert.equals(5, caramelo.peso())
 		assert.equals(15, bombon.peso())
 		mariano.probarGolosinas()
-//		assert.equals(98, chocolatin.peso())
-//		assert.equals(4, caramelo.peso())
+		assert.equals(98, chocolatin.peso())
+		assert.equals(4, caramelo.peso())
 		assert.equals(11, bombon.peso())
 	}
+	
+	test "test desechar" {
+		mariano.desechar(chocolatin)
+		mariano.desechar(caramelo)
+		mariano.desechar(bombon)
+		assert.notThat(mariano.golosinas().contains(chocolatin) )
+	}
+	
+	test " hay golosina sin tacc" {
+		assert.that(mariano.hayGolosinaSinTACC())
+	}
+	
+	test " precios cuidados" {
+		chocolatin.pesoInicial(5)
+		assert.that(mariano.preciosCuidados())
+	}
+	
+	test "golosina de sabor" {
+		assert.equals(chocolatin, mariano.golosinaDeSabor("chocolate"))
+	}
+	
+	test "golosinas de sabor" {
+		assert.equals([chocolatin], mariano.golosinasDeSabor("chocolate"))
+		assert.equals([caramelo], mariano.golosinasDeSabor("naranja"))
+			
+	}
+
+    test "sabores" {
+    	assert.equals(#{"chocolate","frutilla","naranja"}, mariano.sabores())    	
+    }
+    
+    test "golosina mas cara" {
+    	chocolatin.pesoInicial(20)
+    	assert.equals(chocolatin, mariano.golosinaMasCara())
+    }
+
+    test "peso golosinas" {
+    	chocolatin.pesoInicial(5)
+    	assert.equals(25, mariano.pesoGolosinas())
+    }
+    
+    test "golosinas faltantes" {
+    	assert.equals(#{alfajor,chupetin}, mariano.golosinasFaltantes(#{alfajor, bombon, chocolatin, chupetin}))
+    }
+    
+    test "gustos faltantes" {
+    	assert.equals(#{"melón","vainilla"}, mariano.gustosFaltantes(#{"melón", "chocolate", "frutilla" , "vainilla"}))
+    }	
+    	
+	
 	
 }
 

@@ -1,7 +1,7 @@
 import golosinas.*
 
 object mariano {
-	var property golosinas = [bombon, caramelo, alfajor, chupetin]
+	var property golosinas = [bombon, caramelo, chocolatin]
 	
 	method comprar(golosina) { golosinas.add(golosina) }
 	
@@ -23,17 +23,15 @@ object mariano {
 	
 	method pesoGolosinas() { return golosinas.sum { golosina => golosina.peso() } }
 	
-	method golosinasFaltantes(golosinasDeseadas) {
-		 var deseadas = golosinasDeseadas 
-		deseadas.removeAll(golosinas)
-		return deseadas
-	} 
+	method golosinasFaltantes(golosinasDeseadas) { golosinasDeseadas.removeAll(golosinas)
+	return golosinasDeseadas }
 	
-	method gustosFaltantes(gustosDeseados) {
-		var deseados = gustosDeseados
-		deseados.removeAll(golosinas.gusto())
-		return deseados
-		
+	method gustosFaltantes(gustosDeseados) { 
+		var gustosDeGolosinas = golosinas.map { golosina => golosina.gusto() }
+		gustosDeseados.removeAll(gustosDeGolosinas)
+		return gustosDeseados
 	}
-}
+	
+	}
+		
 
