@@ -80,6 +80,8 @@ object golosinaBaniada {
 	method libreGluten() = golosinaInterior.libreGluten()
 }
 
+// Aca hubiera estado bueno que resuelvas el ejercicio con colecciones.
+// La idea era pensar en como hacer rotar los gustos.
 object tuttifrutti {
 	var property esLibreGluten = true
 	var property gusto = "frutilla"
